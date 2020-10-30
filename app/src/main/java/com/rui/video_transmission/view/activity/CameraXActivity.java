@@ -10,6 +10,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
 
@@ -17,13 +18,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.experimental.UseExperimental;
 import androidx.camera.core.AspectRatio;
 import androidx.camera.core.Camera;
+import androidx.camera.core.CameraControl;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ExperimentalGetImage;
+import androidx.camera.core.FocusMeteringAction;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
+import androidx.camera.core.MeteringPoint;
+import androidx.camera.core.MeteringPointFactory;
 import androidx.camera.core.Preview;
+import androidx.camera.core.SurfaceOrientedMeteringPointFactory;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.core.content.ContextCompat;
 
@@ -36,6 +42,7 @@ import com.rui.video_transmission.databinding.ActivityCameraXBinding;
 import java.io.File;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 
 public class CameraXActivity extends BaseActivity {
     private ActivityCameraXBinding mBinding;
@@ -56,6 +63,7 @@ public class CameraXActivity extends BaseActivity {
     private Preview mPreview;
     private ImageAnalysis mImageAnalysis;
     private int mDisplayId = -1;
+    private CameraControl mCameraControl;
 
     /**  图片文件保存路径 (FileProvider不能将内容共享到私有文件 getExternalFilesDir) **/
     public static final String ID_PHOTO_DIR = "/Test/Images";
@@ -232,15 +240,38 @@ public class CameraXActivity extends BaseActivity {
         /** 5.绑定 processCameraProvider **/
         // 使用相同的生命周期所有者将声明的配置应用于 processCameraProvider
         try {
-            Camera camera = processCameraProvider.get()
-                    .bindToLifecycle(this, cameraSelector, mPreview, imageCapture, mImageAnalysis);
+            Camera camera = processCameraProvider.get().bindToLifecycle(this, cameraSelector, mPreview, imageCapture, mImageAnalysis);
 //            mPreview.setSurfaceProvider(mBinding.viewFinder.createSurfaceProvider(camera.getCameraInfo()));
             mPreview.setSurfaceProvider(mBinding.viewFinder.getSurfaceProvider());
+            mCameraControl = camera.getCameraControl();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            focusMeteringPoint(event.getX(), event.getY());
+        }
+        return true;
+    }
+
+    /**
+     * 设置点按自动对焦
+     */
+    private void focusMeteringPoint(float x, float y) {
+        MeteringPointFactory factory = new SurfaceOrientedMeteringPointFactory(mBinding.viewFinder.getWidth(), mBinding.viewFinder.getHeight());
+        MeteringPoint point = factory.createPoint(x, y);
+        FocusMeteringAction action = new FocusMeteringAction.Builder(point, FocusMeteringAction.FLAG_AF)
+//                .addPoint(point2, FocusMeteringAction.FLAG_AE) // could have many
+                // auto calling cancelFocusAndMetering in 5 seconds
+                .setAutoCancelDuration(5, TimeUnit.SECONDS)
+                .build();
+
+        mCameraControl.startFocusAndMetering(action);
     }
 
     /**
