@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/camera_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activity.CameraXActivity">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/view_finder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/id_photo_mask"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/id_photo_mask"
+            android:layout_margin="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/camera_ui_container"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/camera_ui_container"
+            android:layout_width="match_parent"
+            android:layout_height="98dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+            <!-- Camera control and gallery buttons -->
+            <ImageButton
+                android:id="@+id/camera_cancel_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:padding="32dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@drawable/cha" />
+
+            <ImageButton
+                android:id="@+id/camera_capture_button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/take_picture"
+                android:scaleType="fitCenter"
+                android:rotation="90"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <ImageView
+                android:id="@+id/photo_view_button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="32dp"
+                android:background="@color/gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f29202</color>
+    <color name="colorPrimaryDark">#f29202</color>   <!--  控制状态栏的背景颜色  -->
+    <color name="colorAccent">#FF6347</color>
+
+    <color name="theme_color">#f29202</color>
+    <color name="theme_color_bg">#FFFAFA</color>
+    <color name="second_color">#FF6347</color>
+
+    <color name="gray">#808080</color>
+    <color name="indicator_gray">#959bbb</color>
+    <color name="gray_bg">#F0F0F0</color>
+    <color name="warning_red">#EE2C2C</color>
+    <color name="warning_gray">#D1D1D1</color>
+
+    <color name="white">@android:color/white</color>
+    <color name="black">@android:color/black</color>
+    <color name="green">#00EE00</color>
+    <color name="red">#FF0000</color>
+    <color name="orange">#EEAD0E</color>
+</resources>
