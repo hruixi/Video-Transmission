@@ -6,7 +6,7 @@
     <data>
         <variable
             name="vm"
-            type="com.rui.mvvm_jetpack.viewmodel.Common_vm" />
+            type="com.rui.VideoTransmission.viewmodel.Common_vm" />
     </data>
 
     <FrameLayout
