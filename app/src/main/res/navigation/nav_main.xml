@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/blankFragment"
-        android:name="com.rui.VideoTransmission.view.fragment.BlankFragment"
+        android:name="com.rui.video_transmission.view.fragment.BlankFragment"
         android:label="BlankFragment"
         tools:layout="@layout/fragment_blank"
         />

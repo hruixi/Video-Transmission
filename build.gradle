@@ -57,13 +57,13 @@ ext {
     canarySdkVersion                = '1.5.4'
 
     // CameraX版本号
-    camerax_version                 = '1.0.0-beta02'
+    camerax_version                 = '1.0.0-beta11'
 
     // Jetpack的Lifecycle以及ViewModel
     lifecycle_version               = '2.2.0'
     // Jetpack导航框架
-    navigation_version              = "2.3.0-alpha04"
+    navigation_version              = "2.3.1"
     // Jetpack的paging框架
-    paging_version                  = "2.1.1"
+    paging_version                  = "2.1.2"
 
 }
