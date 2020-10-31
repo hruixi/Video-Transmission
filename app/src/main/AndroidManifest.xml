@@ -14,10 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.rui.video_transmission.view.activity.PagedListActivity" />
+        <activity
+            android:name="com.rui.video_transmission.view.activity.PagedListActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
         <activity
             android:name="com.rui.video_transmission.view.activity.CameraXActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
         <activity android:name="com.rui.video_transmission.view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
