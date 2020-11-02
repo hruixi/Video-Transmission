@@ -86,7 +86,11 @@ public abstract class BaseActivity extends AppCompatActivity
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(false);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-            mToolbar.setNavigationIcon(setToolbarIcon(R.drawable.ic_back));
+            if (isShowToolbarIcon()) {
+                mToolbar.setNavigationIcon(setToolbarIcon(R.drawable.ic_back));
+            } else {
+                mToolbar.setNavigationIcon(null);
+            }
             mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

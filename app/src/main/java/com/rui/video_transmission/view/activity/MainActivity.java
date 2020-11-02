@@ -45,4 +45,8 @@ public class MainActivity extends BaseActivity {
     protected boolean isNeedToolbar() {
         return true;
     }
+    @Override
+    public boolean isShowToolbarIcon() {
+        return false;
+    }
 }
