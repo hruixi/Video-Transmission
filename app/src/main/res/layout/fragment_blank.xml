@@ -1,42 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
+    <data></data>
 
-    </data>
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:context=".view.fragment.BlankFragment">
-        <Button
-            android:id="@+id/fra_testApi"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/buttonLl"
+            android:layout_width="238dp"
+            android:layout_height="238dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:gravity="center"
-            android:text="testApi" />
+            android:background="@drawable/round_theme_bg"
+            android:orientation="vertical"
+            tools:context=".view.fragment.BlankFragment">
+            <Button
+                android:id="@+id/fra_testApi"
+                style="@style/buttonStyle_main"
+                android:drawableStart="@drawable/sender"
+                android:text="@string/sender" />
+            <Button
+                android:id="@+id/fra_tv"
+                style="@style/buttonStyle_main"
+                android:layout_marginTop="30dp"
+                android:drawableStart="@drawable/receiver"
+                android:text="@string/receiver"/>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/fra_tv"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:gravity="center"
-            android:text="into cameraX" />
-        <Button
-            android:id="@+id/fra_pagedList"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:gravity="center"
-            android:text="into reddit" />
-    </LinearLayout>
+        <com.wuyr.pathview.PathView
+            android:id="@+id/pathView_up"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonLl"
+            android:layout_marginBottom="18dp" />
+        <com.wuyr.pathview.PathView
+            android:id="@+id/pathView_down"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonLl"
+            android:layout_marginTop="18dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

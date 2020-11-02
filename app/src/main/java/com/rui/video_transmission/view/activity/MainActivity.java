@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
 
+import com.rui.video_transmission.R;
 import com.rui.video_transmission.base.BaseActivity;
 import com.rui.video_transmission.viewmodel.Common_vm;
 import com.rui.video_transmission.databinding.ActivityMainBinding;
@@ -38,7 +39,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public String setToolbarTitle() {
-        return "<Main Activity>";
+        return getString(R.string.app_name_str);
     }
     @Override
     protected boolean isNeedToolbar() {

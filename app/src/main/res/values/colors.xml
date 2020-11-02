@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f29202</color>
-    <color name="colorPrimaryDark">#f29202</color>   <!--  控制状态栏的背景颜色  -->
+    <color name="colorPrimary">#F29202</color>
+    <color name="colorPrimaryDark">#F29202</color>   <!--  控制状态栏的背景颜色  -->
     <color name="colorAccent">#FF6347</color>
 
-    <color name="theme_color">#f29202</color>
+    <color name="theme_color">#F29202</color>
     <color name="theme_color_bg">#FFFAFA</color>
     <color name="second_color">#FF6347</color>
 

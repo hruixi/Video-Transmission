@@ -148,4 +148,7 @@ dependencies {
     // RxJava的衍生库
     implementation "com.github.tbruyelle:rxpermissions:0.10.2"  //使用RxPermission
     implementation 'com.github.VictorAlbertos:RxActivityResult:0.4.5-2.x'  // 使用RxActivityResult
+
+    // 第三方UI库
+    implementation 'com.wuyr:pathview:1.0.0'            //pathview
 }

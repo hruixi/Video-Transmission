@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">Video Transmission</string>
+    <string name="app_name_str">Video Transmission</string>
 
     <string name="base_url_xingsuying">http://rest.vtpm.starblingbling.com</string>
     <string name="base_url_reddit">https://www.reddit.com/</string>
+
+    <string name="sender">发送端</string>
+    <string name="receiver">接收端</string>
 </resources>
