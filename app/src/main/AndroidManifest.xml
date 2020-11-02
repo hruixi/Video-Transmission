@@ -22,7 +22,9 @@
             android:name="com.rui.video_transmission.view.activity.CameraXActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
-        <activity android:name="com.rui.video_transmission.view.activity.MainActivity">
+        <activity
+            android:name="com.rui.video_transmission.view.activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

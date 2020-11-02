@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -29,6 +30,9 @@ public class BlankFragment extends BaseFragment {
     Common_vm mMainViewModel;
     private FragmentBlankBinding mBinding;
 
+    private static final int  ANIMATE_DURATION = 2000;
+    private static final int  LINE_WIDTH = 5;
+
     public static BlankFragment newInstance() {
         return new BlankFragment();
     }
@@ -49,17 +53,22 @@ public class BlankFragment extends BaseFragment {
     }
 
     private void bindView() {
-        initPathViewUp(mBinding.pathViewUp.getWidth(), mBinding.pathViewUp.getHeight());
-        initPathViewDown(mBinding.pathViewDown.getWidth(), mBinding.pathViewDown.getHeight());
+        mBinding.getRoot().post(new Runnable() {
+            @Override
+            public void run() {
+                initPathViewUp(mBinding.pathViewUp.getWidth(), mBinding.pathViewUp.getHeight());
+                initPathViewDown(mBinding.pathViewDown.getWidth(), mBinding.pathViewDown.getHeight());
+            }
+        });
     }
 
     private void initPathViewUp(int width, int height) {
         // 设置基础属性
-        mBinding.pathViewUp.setLineWidth(10);
-        mBinding.pathViewUp.setDuration(1500);
+        mBinding.pathViewUp.setLineWidth(LINE_WIDTH);
+        mBinding.pathViewUp.setDuration(ANIMATE_DURATION);
         mBinding.pathViewUp.setRepeat(true);
         mBinding.pathViewUp.setMode(PathView.MODE_AIRPLANE);
-        mBinding.pathViewUp.setDarkLineColor(Color.WHITE);
+        mBinding.pathViewUp.setDarkLineColor(ResourcesCompat.getColor(getResources(), R.color.gray_bg, null));
         mBinding.pathViewUp.setLightLineColor(getResources().getColor(R.color.second_color));
         // 设置路径
         mBinding.pathViewUp.setPath(getPath(width, height));
@@ -68,14 +77,14 @@ public class BlankFragment extends BaseFragment {
 
     private void initPathViewDown(int width, int height) {
         // 设置基础属性
-        mBinding.pathViewDown.setLineWidth(10);
-        mBinding.pathViewDown.setDuration(1500);
+        mBinding.pathViewDown.setLineWidth(LINE_WIDTH);
+        mBinding.pathViewDown.setDuration(ANIMATE_DURATION);
         mBinding.pathViewDown.setRepeat(true);
         mBinding.pathViewDown.setMode(PathView.MODE_AIRPLANE);
-        mBinding.pathViewDown.setDarkLineColor(Color.WHITE);
+        mBinding.pathViewUp.setDarkLineColor(ResourcesCompat.getColor(getResources(), R.color.gray_bg, null));
         mBinding.pathViewDown.setLightLineColor(getResources().getColor(R.color.second_color));
         // 设置路径
-        mBinding.pathViewDown.setPath(getPath(width, height));
+        mBinding.pathViewDown.setPath(getPath_inverse(width, height));
         mBinding.pathViewDown.start();
     }
 
@@ -87,6 +96,17 @@ public class BlankFragment extends BaseFragment {
         path.lineTo(width * (7F / 12F), height);                          // line3
         path.lineTo(width * (2F / 3F), height * (1F / 2F));            // line4
         path.lineTo(width, height * (1F / 2F));                           // line5
+        return path;
+    }
+
+    private Path getPath_inverse(int width, int height) {
+        Path path = new Path();
+        path.moveTo(width, height * (1F / 2F));
+        path.lineTo(width * (2F / 3F), height * (1F / 2F));            // line1
+        path.lineTo(width * (7F / 12F), height);                          // line2
+        path.lineTo(width * (5F / 12F), 0);                            // line3
+        path.lineTo(width * (1F / 3F), height * (1F / 2F));            // line4
+        path.lineTo(0, height * (1F / 2F));                            // line5
         return path;
     }
 
